@@ -1,0 +1,133 @@
+For Login/Register
+__________________
+
+1. Seller
+
+create table seller(
+sid int primary key auto_increment,
+sFirstName varchar(20) not null,
+sLastName varchar(20),
+semail varchar(20) not null unique,
+spassword varchar(45) not null,
+smobile char(10) unique not null,
+sdod date not null
+);
+
+2.Buyer
+
+create table buyer(
+bid int primary key auto_increment,
+bFirstName varchar(20) not null,
+bLastName varchar(20),
+bemail varchar(20) not null unique,
+bpassword varchar(45) not null,
+bmobile char(10) unique not null,
+bdod date not null
+);
+
+
+Category
+______________
+
+create table category(
+cid int primary key auto_increment,
+cname varchar(25) not null unique
+);
+
+Dispute Detail tables
+-----------------------
+
+1. Dispute Handle Team
+
+create table disputTeam(
+DTid int primary key auto_increment,
+DTname varchar(20) not null,
+cid int not null,
+foreign key (cid) references category(cid)
+);
+
+2. Seller to App
+
+create table seller_app(
+did int primary key auto_increment,
+sid int not null,
+cid int not null,
+distputDetail varchar(50) not null,
+dDate date not null,
+disputeAssignToSolve int not null,
+solutionDate date,
+IsSolve boolean,
+foreign key (sid) references seller(sid),
+foreign key (cid) references category(cid),
+foreign key (disputeAssignToSolve) references disputTeam(DTid)
+);
+
+
+3. Buyer to Seller
+
+create table buyer_to_seller(
+did int primary key auto_increment,
+bid int not null,
+cid int not null,
+distputDetail varchar(50) not null,
+dDate date not null,
+sid int,
+technical_or_login_issue boolean,
+disputeAssignToSolve int not null,
+solutionDate date,
+IsSolve boolean,
+foreign key (bid) references buyer(bid),
+foreign key (sid) references seller(sid),
+foreign key (cid) references category(cid),
+foreign key (disputeAssignToSolve) references disputTeam(DTid)
+);
+
+
+Items To Sell
+------------------
+
+1. Item Selling List
+
+create table selling_item(
+autionID int primary key auto_increment,
+sid int not null,
+cid int not null,
+ItemDate date not null,
+sellingPrice int not null,
+item_detail varchar(25),
+item_quantity int not null,
+auctionAddress varchar(25) not null,
+auctionDate date not null,
+noOfBuyerAuction int not null,
+foreign key (sid) references seller(sid),
+foreign key (cid) references category(cid)
+);
+
+2. Item Sold List
+
+create table sold(
+auctionid int primary key,
+sid int not null,
+bid int not null,
+cid int not null,
+item_detail varchar(25),
+item_quantity int not null,
+ItemDate date not null,
+sellingPrice int not null,
+auctionPrice int not null,
+auctionAddress varchar(25) not null,
+auctionDate date,
+foreign key (sid) references seller(sid),
+foreign key (bid) references buyer(bid),
+foreign key (cid) references category(cid)
+);
+
+
+3. Auction on Items
+
+create table AuctionTable(
+auctionId int not null,
+bid int not null,
+auctionPrice int not null,
+primary key (auctionid, bid)
+);
