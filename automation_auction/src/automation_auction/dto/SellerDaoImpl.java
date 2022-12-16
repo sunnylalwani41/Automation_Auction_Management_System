@@ -1,5 +1,7 @@
 package automation_auction.dto;
 
-public class SellerDaoImpl {
+import automation_auction.dao.SellerDao;
+
+public class SellerDaoImpl implements SellerDao{
 
 }
