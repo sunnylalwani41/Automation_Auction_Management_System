@@ -89,18 +89,19 @@ Items To Sell
 1. Item Selling List
 
 create table selling_item(
-autionID int primary key auto_increment,
+autionID int not null unique auto_increment,
 sid int not null,
 cid int not null,
 ItemDate date not null,
 sellingPrice int not null,
-item_detail varchar(25),
+item_detail varchar(25) not null,
 item_quantity int not null,
 auctionAddress varchar(25) not null,
 auctionDate date not null,
 noOfBuyerAuction int not null,
 foreign key (sid) references seller(sid),
-foreign key (cid) references category(cid)
+foreign key (cid) references category(cid),
+primary key(sid, item_detail)
 );
 
 2. Item Sold List

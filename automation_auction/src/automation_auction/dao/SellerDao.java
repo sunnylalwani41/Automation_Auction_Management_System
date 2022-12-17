@@ -9,6 +9,7 @@ import automation_auction.model.Selling_Item;
 import automation_auction.model.Sold;
 
 public interface SellerDao {
+	
 	public String registerSeller(Seller seller)throws SellerException;
 	
 	public Seller loginBySeller(String username, String password) throws SellerException;

@@ -2,10 +2,12 @@ package automation_auction.dao;
 
 import java.util.List;
 
+import automation_auction.Exception.AdministrationException;
 import automation_auction.Exception.BuyerException;
 import automation_auction.Exception.DisputeException;
 import automation_auction.Exception.ItemException;
 import automation_auction.Exception.SellerException;
+import automation_auction.model.Administrator;
 import automation_auction.model.Buyer;
 import automation_auction.model.DisputeBuyerToSeller;
 import automation_auction.model.DisputeSellerToApp;
@@ -13,6 +15,8 @@ import automation_auction.model.Seller;
 import automation_auction.model.Selling_Item;
 
 public interface AdministratorDao {
+	
+	public Administrator loginAdministrator(String username, String password) throws AdministrationException;
 	
 	public List<Buyer> listOfBuyers() throws BuyerException;
 	

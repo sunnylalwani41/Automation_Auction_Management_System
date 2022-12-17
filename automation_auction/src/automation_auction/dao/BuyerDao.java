@@ -11,7 +11,10 @@ import automation_auction.model.Buyer_Item;
 import automation_auction.model.Selling_Item;
 
 public interface BuyerDao {
+	
 	public String registerBuyer(Buyer buyer) throws BuyerException;
+	
+	public Buyer loginBuyer(String username, String password) throws BuyerException;
 	
 	public String resetPasswordByBuyer(String username, String dob) throws BuyerException;
 	
