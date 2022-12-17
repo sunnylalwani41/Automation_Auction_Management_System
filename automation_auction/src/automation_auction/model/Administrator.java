@@ -1,5 +1,7 @@
 package automation_auction.model;
 
+import java.sql.Date;
+
 public class Administrator {
 	private int aid;
 	private String aFirstName;
@@ -7,7 +9,7 @@ public class Administrator {
 	private String aemail;
 	private String apassword;
 	private String amobile;
-	private String adod;
+	private Date adod;
 	public Administrator() {
 		super();
 	}
@@ -47,10 +49,10 @@ public class Administrator {
 	public void setAmobile(String amobile) {
 		this.amobile = amobile;
 	}
-	public String getAdod() {
+	public Date getAdod() {
 		return adod;
 	}
-	public void setAdod(String adod) {
+	public void setAdod(Date adod) {
 		this.adod = adod;
 	}
 	@Override
@@ -58,5 +60,6 @@ public class Administrator {
 		return "Administrator [aid=" + aid + ", aFirstName=" + aFirstName + ", aLastName=" + aLastName + ", aemail="
 				+ aemail + ", apassword=" + apassword + ", amobile=" + amobile + ", adod=" + adod + "]";
 	}
+	
 	
 }

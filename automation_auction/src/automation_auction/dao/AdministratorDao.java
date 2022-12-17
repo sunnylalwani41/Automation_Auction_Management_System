@@ -2,7 +2,7 @@ package automation_auction.dao;
 
 import java.util.List;
 
-import automation_auction.Exception.AdministrationException;
+import automation_auction.Exception.AdministratorException;
 import automation_auction.Exception.BuyerException;
 import automation_auction.Exception.DisputeException;
 import automation_auction.Exception.ItemException;
@@ -16,7 +16,7 @@ import automation_auction.model.Selling_Item;
 
 public interface AdministratorDao {
 	
-	public Administrator loginAdministrator(String username, String password) throws AdministrationException;
+	public Administrator loginAdministrator(String username, String password) throws AdministratorException;
 	
 	public List<Buyer> listOfBuyers() throws BuyerException;
 	

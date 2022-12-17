@@ -26,6 +26,18 @@ bdod date not null
 );
 
 
+3. Administrator
+
+create table Administrator(
+aid int primary key auto_increment,
+aFirstName varchar(20) not null,
+aLastName varchar(20),
+aemail varchar(20) not null unique,
+apassword varchar(45) not null,
+amobile char(10) unique not null,
+adod date not null
+);
+
 Category
 ______________
 
@@ -132,3 +144,31 @@ bid int not null,
 auctionPrice int not null,
 primary key (auctionid, bid)
 );
+
+
+--------------------------------------------------------------------
+
+values
+-------
+
+1. Administrator
+________________
+
+Register Administrator
+
+insert into administrator 
+(aFirstName, aLastName, aemail, apassword, amobile, adod) 
+values(
+'Krishna',
+null, 
+'krishna@12345',
+'Admin@12345',
+'1234567890',
+19960412
+);
+
+
+Login Administrator
+
+select * from Administrator where aemail = ? AND apassword = ?
+
