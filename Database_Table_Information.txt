@@ -66,12 +66,10 @@ sid int not null,
 cid int not null,
 distputDetail varchar(50) not null,
 dDate date not null,
-disputeAssignToSolve int not null,
 solutionDate date,
 IsSolve boolean,
 foreign key (sid) references seller(sid),
-foreign key (cid) references category(cid),
-foreign key (disputeAssignToSolve) references disputTeam(DTid)
+foreign key (cid) references category(cid)
 );
 
 
@@ -81,17 +79,14 @@ create table buyer_to_seller(
 did int primary key auto_increment,
 bid int not null,
 cid int not null,
-distputDetail varchar(50) not null,
+disputeDetail varchar(50) not null,
 dDate date not null,
 sid int,
-technical_or_login_issue boolean,
-disputeAssignToSolve int not null,
 solutionDate date,
 IsSolve boolean,
 foreign key (bid) references buyer(bid),
 foreign key (sid) references seller(sid),
-foreign key (cid) references category(cid),
-foreign key (disputeAssignToSolve) references disputTeam(DTid)
+foreign key (cid) references category(cid)
 );
 
 
@@ -156,7 +151,7 @@ ________________
 
 Register Administrator
 
-insert into administrator 
+>insert into administrator 
 (aFirstName, aLastName, aemail, apassword, amobile, adod) 
 values(
 'Krishna',
@@ -170,5 +165,81 @@ null,
 
 Login Administrator
 
-select * from Administrator where aemail = ? AND apassword = ?
+>select * from Administrator where aemail = ? AND apassword = ?
 
+
+
+List of Buyer
+
+>select * from buyer;
+
+
+insert in Buyer
+
+>insert into buyer
+(bFirstName, bLastName, bemail, bpassword, bmobile, bdod) values(
+'sunny',
+'lalwani',
+'sunny41@gmail.com',
+'Admin@12345',
+'8890918364',
+19981225
+);
+
+> update administrator set apassword = '12345' where aemail='krishna@12345';
+
+> select * from seller
+
+> insert into seller
+(sFirstName, sLastName, semail, spassword, smobile, sdod) values(
+'sunny',
+'lalwani',
+'seller@gmail.com',
+'12345',
+'1234567890',
+'1999-02-02'
+);
+
+
+> select s.did, s.sid, s.cid, s.distputDetail, s.dDate, s.solutionDate, s.IsSolve, t.DTname from seller_app s INNER JOIN disputTeam t ON s.cid = t.cid AND s.IsSolve = false;
+
+> insert into seller_app(sid, cid, distputDetail, dDate, solutionDate, IsSolve) values(
+1, 1, 'property not able to listing', CURDATE(), adddate(sysdate(), INTERVAL 10 DAY), false
+);
+
+> insert into category(cname) values('property');
+> insert into category(cname) values('login or registration');
+> insert into category(cname) values('photo upload');
+> insert into category(cname) values('refund');
+> insert into category(cname) values('payment');
+> insert into category(cname) values('sell');
+> insert into category(cname) values('app improvement');
+> insert into category(cname) values('item listing');
+> insert into category(cname) values('Electronic');
+> insert into category(cname) values('Automobile');
+> insert into category(cname) values('Miscellaneous');
+
+
+> insert into disputTeam(DTname, cid) values('Harish', 1);
+> insert into disputTeam(DTname, cid) values('Amit', 2);
+> insert into disputTeam(DTname, cid) values('suresh', 3);
+> insert into disputTeam(DTname, cid) values('Rone', 4);
+> insert into disputTeam(DTname, cid) values('Pippo', 5);
+> insert into disputTeam(DTname, cid) values('Nobita', 6);
+> insert into disputTeam(DTname, cid) values('Riruru', 7);
+> insert into disputTeam(DTname, cid) values('Suzuka', 8);
+> insert into disputTeam(DTname, cid) values('Mahesh', 9);
+> insert into disputTeam(DTname, cid) values('Naresh', 10);
+> insert into disputTeam(DTname, cid) values('Doreamon', 11);
+
+> select s.did, s.bid, s.sid, c.cname, s.disputeDetail, s.dDate, s.solutionDate, s.IsSolve, t.DTname from buyer_to_seller s INNER JOIN disputTeam t INNER JOIN category c ON s.cid = t.cid AND s.cid = c.cid AND s.IsSolve = false
+
+> insert into buyer_to_seller (bid, cid, disputeDetail, dDate, sid, solutionDate, IsSolve) values( 1, 2, 'can not login', now(), null, addDate(curDate(), INTERVAL 15 DAY), false );
+
+> insert into sold values( 0, 1, 1, 1, 'house', 1, curdate(), 2500000, 2000000, 'Jaipur', curdate() );
+
+> insert into sold values( -1, 1, 1, 1, 'house', 1, 19900101, 2500000, 2000000, 'Jaipur', curdate() );
+
+> insert into sold values( -2, 1, 1, 1, 'house', 1, 19900101, 2500000, 2000000, 'Jaipur', 19960505 );
+
+> select * from sold order by auctionDate desc;

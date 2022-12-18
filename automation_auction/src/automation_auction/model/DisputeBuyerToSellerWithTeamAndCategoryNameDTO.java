@@ -2,18 +2,18 @@ package automation_auction.model;
 
 import java.sql.Date;
 
-public class DisputeBuyerToSeller {
+public class DisputeBuyerToSellerWithTeamAndCategoryNameDTO {
 	private int did;
 	private int bid;
-	private int cid;
 	private String distputDetail;
 	private Date dDate;
 	private int sid;
 	private Date solutionDate;
 	private boolean IsSolve;
-	public DisputeBuyerToSeller() {
-		super();
-	}
+	 
+	private String cname;
+	private String DTname;
+	
 	public int getDid() {
 		return did;
 	}
@@ -25,12 +25,6 @@ public class DisputeBuyerToSeller {
 	}
 	public void setBid(int bid) {
 		this.bid = bid;
-	}
-	public int getCid() {
-		return cid;
-	}
-	public void setCid(int cid) {
-		this.cid = cid;
 	}
 	public String getDistputDetail() {
 		return distputDetail;
@@ -62,10 +56,26 @@ public class DisputeBuyerToSeller {
 	public void setIsSolve(boolean isSolve) {
 		IsSolve = isSolve;
 	}
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public String getDTname() {
+		return DTname;
+	}
+	public void setDTname(String dTname) {
+		DTname = dTname;
+	}
+	public DisputeBuyerToSellerWithTeamAndCategoryNameDTO() {
+		super();
+	}
 	@Override
 	public String toString() {
-		return "DisputeBuyerToSeller [did=" + did + ", bid=" + bid + ", cid=" + cid + ", distputDetail=" + distputDetail
-				+ ", dDate=" + dDate + ", sid=" + sid + ", solutionDate=" + solutionDate + ", IsSolve=" + IsSolve + "]";
+		return "DisputeBuyerToSellerWithTeamAndCategoryNameDTO [did=" + did + ", bid=" + bid + ", distputDetail="
+				+ distputDetail + ", dDate=" + dDate + ", sid=" + sid + ", solutionDate=" + solutionDate + ", IsSolve="
+				+ IsSolve + ", cname=" + cname + ", DTname=" + DTname + "]";
 	}
 	
 	
