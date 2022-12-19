@@ -308,10 +308,23 @@ public class SellerDaoImpl implements SellerDao{
 	public String removeItemFromTheList(int sid, String itemName) throws ItemException {
 		String message = "Such item name is not present";
 		
-		try () {
+		try (Connection conn = DBUtil.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("");
+			
+			ps.setInt(sid, sid);
+			
+			
+			int x = ps.executeUpdate();
+			if(x > 0) {
+				
+			}
+			else {
+				throw new ItemException(message);
+			}
 			
 		} catch (SQLException e) {
-			// TODO: handle exception
+			throw new ItemException(e.getMessage());
 		}
 		
 		
