@@ -440,7 +440,7 @@ public class Main {
 							}
 							catch(ItemException e) {
 								System.out.println(JavaConsoleColor.RED+e.getMessage()+JavaConsoleColor.RESET);
-								System.out.println("============================");'
+								System.out.println("============================");
 							}
 							System.out.println("\n 1. Profile Setting..");
 							System.out.println("2. Back");
@@ -471,26 +471,110 @@ public class Main {
 						}
 						break;
 						case 2:{
+							System.out.println("Enter item name :");
+							String itemName= sc.nextLine();
 							
+							System.out.println("Enter item price :");
+							int price= sc.nextInt();
+							
+							sc.nextLine();
+							
+							try {
+								String result1= seller.updateItemPrice(sellerProfile.getSid(), itemName, price);
+								System.out.println(result1);
+							}
+							catch(ItemException e) {
+								System.out.println(e.getMessage());
+							}
+							System.out.println("\n 1. Profile Setting..");
+							System.out.println("2. Back");
+							System.out.println("3. LogOut And Exit");
+							int number9 = sc.nextInt();
+							sc.nextLine();
+							switch(number9) {
+								case 1 : {
+									sellerProfileSetting();
+									break;
+								}
+								case 2 : {
+									sellerDashboard();
+									break;
+								}
+								case 3 : {
+									System.out.println("Thanking you for visiting...");
+									return;
+									
+								}
+								default : {
+									System.out.println("Invalid number, try again ...");
+									sellerDashboard();
+									break;
+								}
+							}
 						}
 						break;
 						case 3:{
+							System.out.println("Enter item name :");
+							String itemName2= sc.nextLine();
 							
+							System.out.println("Enter item price :");
+							int price2= sc.nextInt();
+							
+							System.out.println("Enter item quantity");
+							int quantity2 = sc.nextInt();
+							
+							sc.nextLine();
+							
+							try {
+								String result3= seller.updateItemPriceAndQuantity(sellerProfile.getSid(), itemName2, price2, quantity2);
+								System.out.println(result3);
+							}
+							catch(ItemException e) {
+								System.out.println(e.getMessage());
+							}
+							System.out.println("\n 1. Profile Setting..");
+							System.out.println("2. Back");
+							System.out.println("3. LogOut And Exit");
+							int number10 = sc.nextInt();
+							sc.nextLine();
+							switch(number10) {
+								case 1 : {
+									sellerProfileSetting();
+									break;
+								}
+								case 2 : {
+									sellerDashboard();
+									break;
+								}
+								case 3 : {
+									System.out.println("Thanking you for visiting...");
+									return;
+									
+								}
+								default : {
+									System.out.println("Invalid number, try again ...");
+									sellerDashboard();
+									break;
+								}
+							}
 						}
 						break;
 						case 4:{
-							
+							sellerProfileSetting();
 						}
 						break;
 						case 5:{
-							
+							sellerDashboard();
 						}
 						break;
 						case 6:{
-							
+							System.out.println("Thanking you for visiting...");
+							return;
 						}
-						break;
+						
 						default:{
+							System.out.println("Invalid number, try again ...");
+							sellerDashboard();
 							
 						}
 						break;
@@ -498,7 +582,113 @@ public class Main {
 				}
 				break;
 				case 3:{
+					Selling_Item item2= new Selling_Item();
+					int category2=0;
+					while(true) {
+						System.out.println("Enter number for category as following:-");
+						System.out.println("1. Property");
+						System.out.println("2. Electronic");
+						System.out.println("3. Automobile");
+						System.out.println("4. Miscellanouse");
+						
+						boolean flag2= false;
+						int number11= sc.nextInt();
+						sc.nextLine();
+						switch(number11) {
+							case 1:{
+								category2= 1;
+								flag2= true;
+							}
+							break;
+							case 2:{
+								category2= 9;
+								flag2= true;
+							}
+							break;
+							case 3:{
+								category2= 10;
+								flag2= true;
+							}
+							break;
+							case 4:{
+								category2= 11;
+								flag2= true;
+							}
+							break;
+							default :{
+								System.out.println("Invalid Entry.. try again.");
+								flag2= false;
+								break;
+							}
+
+
+						}
+						if(flag2) {
+							break;
+						}
+					}
+					item2.setCid(category2);
+					System.out.println("Enter item selling price: ");
+					item2.setSellingPrice(sc.nextInt());
+					sc.nextLine();
 					
+					System.out.println("Enter item name: ");
+					item2.setItem_detail(sc.nextLine());
+					
+					System.out.println("Enter item quantity: ");
+					item2.setItem_quantity(sc.nextInt());
+					sc.nextLine();
+					
+					item2.setSid(sellerProfile.getSid());
+					
+					System.out.println("Enter auction address: ");
+					item2.setAuctionAddress(sc.nextLine());
+					
+					System.out.println("Enter the number of days from today, when auction occur: ");
+					item2.setDays(sc.nextInt());
+					sc.nextInt();
+					
+					
+					
+					
+
+					try {
+						String result= seller.addItemInTheList(item2);
+						
+						System.out.println(JavaConsoleColor.YELLOW_BACKGROUND+result+JavaConsoleColor.RESET);
+						System.out.println("========================");
+					}
+					catch(ItemException e) {
+						System.out.println(JavaConsoleColor.RED+e.getMessage()+JavaConsoleColor.RESET);
+						System.out.println("========================");
+					}
+					
+					System.out.println("\n 1. Profile Setting..");
+					System.out.println("2. Back");
+					System.out.println("3. LogOut And Exit");
+					int num2 = sc.nextInt();
+					sc.nextLine();
+					switch(num2) {
+						case 1 : {
+							sellerProfileSetting();
+							break;
+						}
+						case 2 : {
+							sellerDashboard();
+							break;
+						}
+						case 3 : {
+							System.out.println("Thanking you for visiting...");
+							return;
+							
+						}
+						default : {
+							System.out.println("Invalid number, try again ...");
+							sellerDashboard();
+							break;
+						}
+					}
+
 				}
 				break;
 				case 4:{

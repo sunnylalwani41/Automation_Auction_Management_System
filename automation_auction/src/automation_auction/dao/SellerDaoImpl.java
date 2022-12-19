@@ -274,14 +274,48 @@ public class SellerDaoImpl implements SellerDao{
 
 	@Override
 	public String addItemInTheList(Selling_Item item) throws ItemException {
-		// TODO Auto-generated method stub
-		return null;
+		String msg= "item is duplicate, so not inserted";
+		
+		try (Connection conn = DBUtil.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("insert into selling_item (sid, cid, itemdate, sellingprice, item_detail, item_quantity, auctionaddress, auctiondate, noOfBuyerAuction) values(?, ?, sysdate(), ?, ?, ?, ?, adddate(sysdate(), INTERVAL ? DAY), 0)");
+
+			
+				ps.setInt(1, item.getSid());
+				ps.setInt(2, item.getCid());
+				ps.setInt(3, item.getSellingPrice());
+				ps.setString(4, item.getItem_detail());
+				ps.setInt(5, item.getItem_quantity());
+				ps.setString(6, item.getAuctionAddress());
+				ps.setInt(7, item.getDays());
+			
+				int x = ps.executeUpdate();
+			
+			if(x > 0) {
+				msg= x+ " records successfully inserted...";
+			}
+			else {
+				throw new ItemException(msg);
+			}
+		} catch (SQLException e) {
+			throw new ItemException(e.getMessage());
+		}
+		
+		return msg;
 	}
 
 	@Override
-	public String removeItemFromTheList(int auctionId) throws ItemException {
-		// TODO Auto-generated method stub
-		return null;
+	public String removeItemFromTheList(int sid, String itemName) throws ItemException {
+		String message = "Such item name is not present";
+		
+		try () {
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		
+		
+		return message;
 	}
 
 	@Override

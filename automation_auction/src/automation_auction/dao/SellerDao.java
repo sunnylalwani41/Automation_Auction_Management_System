@@ -31,7 +31,7 @@ public interface SellerDao {
 	
 	public String addItemInTheList(Selling_Item item) throws ItemException;
 	
-	public String removeItemFromTheList(int auctionId) throws ItemException;
+	public String removeItemFromTheList(int sid, String itemName) throws ItemException;
 	
 	public List<Sold> soldItemList() throws ItemException;
 	

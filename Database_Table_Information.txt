@@ -244,10 +244,21 @@ insert in Buyer
 
 > select * from sold order by auctionDate desc;
 
->insert into seller (sFirstName, sLastName, semail, spassword, smobile, sdod) values('sunny', 'lalwani', 'seller@gmail.com', '12345', '1234567890', '1999-02-02');
+> insert into seller (sFirstName, sLastName, semail, spassword, smobile, sdod) values('sunny', 'lalwani', 'seller@gmail.com', '12345', '1234567890', '1999-02-02');
 
-select * from Seller where semail = 'seller@gmail.com' AND spassword = '12345';
+> select * from Seller where semail = 'seller@gmail.com' AND spassword = '12345';
 
-update seller set spassword = 'Admin@12345' where semail = 'seller@gmail.com';
+> update seller set spassword = 'Admin@12345' where semail = 'seller@gmail.com';
 
-update seller set semail= 'sunny@gmail.com' where sFirstName='Sunny' AND sdod= '1999-02-02' AND smobile = '1234567890'
+> update seller set semail= 'sunny@gmail.com' where sFirstName='Sunny' AND sdod= '1999-02-02' AND smobile = '1234567890';
+
+> insert into selling_item (sid, cid, itemdate, sellingprice, item_detail, item_quantity, auctionaddress, auctiondate, noOfBuyerAuction) values(1, 1, sysdate(), 15000000, 'shop', 1, 'Delhi', adddate(sysdate(), INTERVAL 10 DAY), 0);
+
+update selling_item set item_quantity = 5 where sid  = 1 and item_detail= 'shop';
+
+update selling_item set sellingPrice = 156825 where sid  = 1 and item_detail= 'shop';
+
+update selling_item set item_quantity = 1, sellingPrice = 10 where sid  = 1 and item_detail= 'shop';
+
+
+85fe68b
