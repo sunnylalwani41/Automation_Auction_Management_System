@@ -1,5 +1,6 @@
 package automation_auction.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import automation_auction.Exception.SellerException;
@@ -14,9 +15,11 @@ public interface SellerDao {
 	
 	public Seller loginBySeller(String username, String password) throws SellerException;
 	
-	public String resetPasswordBySeller (String username, String dob) throws SellerException;
+	public String resetPasswordBySeller (String username, String password) throws SellerException;
 	
-	public String resetUsernameBySeller (String sFirstName, String sLastName, String dob, String mobile) throws SellerException;
+	public String ChangePasswordBySeller (String username, String password) throws SellerException;
+	
+	public String resetUsernameBySeller (String sFirstName, String username, Date dob, String mobile) throws SellerException;
 	
 	public String addListOfItems(List<Selling_Item> list) throws ItemException;
 	

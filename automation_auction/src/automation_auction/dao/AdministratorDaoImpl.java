@@ -303,7 +303,7 @@ public class AdministratorDaoImpl implements AdministratorDao{
 
 	@Override
 	public String changePasswordAdmin(String username, String password) throws AdministratorException {
-		String message = "Enter wrong username...";
+		String message = "Password can not change...";
 		
 		try (Connection conn = DBUtil.provideConnection()) {
 			

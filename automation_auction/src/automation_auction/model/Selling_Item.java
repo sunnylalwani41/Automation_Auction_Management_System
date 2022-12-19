@@ -1,16 +1,21 @@
 package automation_auction.model;
 
+import java.sql.Date;
+
 public class Selling_Item {
 	private int autionID;
 	private int sid;
 	private int cid;
-	private String ItemDate;
+	private Date ItemDate;
 	private int sellingPrice;
 	private String item_detail;
 	private int item_quantity;
 	private String auctionAddress;
-	private String auctionDate;
+	private Date auctionDate;
 	private int noOfBuyerAuction;
+	public Selling_Item() {
+		super();
+	}
 	public int getAutionID() {
 		return autionID;
 	}
@@ -29,10 +34,10 @@ public class Selling_Item {
 	public void setCid(int cid) {
 		this.cid = cid;
 	}
-	public String getItemDate() {
+	public Date getItemDate() {
 		return ItemDate;
 	}
-	public void setItemDate(String itemDate) {
+	public void setItemDate(Date itemDate) {
 		ItemDate = itemDate;
 	}
 	public int getSellingPrice() {
@@ -59,10 +64,10 @@ public class Selling_Item {
 	public void setAuctionAddress(String auctionAddress) {
 		this.auctionAddress = auctionAddress;
 	}
-	public String getAuctionDate() {
+	public Date getAuctionDate() {
 		return auctionDate;
 	}
-	public void setAuctionDate(String auctionDate) {
+	public void setAuctionDate(Date auctionDate) {
 		this.auctionDate = auctionDate;
 	}
 	public int getNoOfBuyerAuction() {
@@ -71,9 +76,6 @@ public class Selling_Item {
 	public void setNoOfBuyerAuction(int noOfBuyerAuction) {
 		this.noOfBuyerAuction = noOfBuyerAuction;
 	}
-	public Selling_Item() {
-		super();
-	}
 	@Override
 	public String toString() {
 		return "Selling_Item [autionID=" + autionID + ", sid=" + sid + ", cid=" + cid + ", ItemDate=" + ItemDate
@@ -81,5 +83,6 @@ public class Selling_Item {
 				+ ", auctionAddress=" + auctionAddress + ", auctionDate=" + auctionDate + ", noOfBuyerAuction="
 				+ noOfBuyerAuction + "]";
 	}
+	
 	
 }
