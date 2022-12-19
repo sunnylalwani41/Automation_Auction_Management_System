@@ -23,11 +23,11 @@ public interface SellerDao {
 	
 	public String addListOfItems(List<Selling_Item> list) throws ItemException;
 	
-	public String updateItemPrice(int auctionId, int updatePrice) throws ItemException;
+	public String updateItemPrice(int sid, String itemName, int updatePrice) throws ItemException;
 	
-	public String updateItemQuantity(int auctionId, int itemQuantity) throws ItemException;
+	public String updateItemQuantity(int sid, String itemName, int itemQuantity) throws ItemException;
 	
-	public String updateItemPriceAndQuantity(int auctionId, int updatePrice, int itemQuantity) throws ItemException;
+	public String updateItemPriceAndQuantity(int sid, String itemName, int updatePrice, int itemQuantity) throws ItemException;
 	
 	public String addItemInTheList(Selling_Item item) throws ItemException;
 	

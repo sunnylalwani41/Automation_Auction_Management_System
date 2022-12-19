@@ -60,126 +60,127 @@ public class Main {
 		
 		
 		
-		Scanner sc = new Scanner(System.in);
-		int num= sc.nextInt();
-		sc.nextLine();
+		try (Scanner sc = new Scanner(System.in)) {
+			int num= sc.nextInt();
+			sc.nextLine();
 
-		
-		switch(num){
-		
-			case 1:{
-					while(true) {
-						System.out.println("Enter username/email: ");
-						String username=sc.nextLine();
-						
-						System.out.println("Enter password : ");
-						String password = sc.nextLine();
-						
-						try {
-							adminProfile = admin.loginAdministrator(username, password);
-							System.out.print("\n Welcome Administrator "+adminProfile.getaFirstName());
-							if(adminProfile.getaLastName()!=null) {
-								System.out.println(" "+adminProfile.getaLastName());
+			
+			switch(num){
+			
+				case 1:{
+						while(true) {
+							System.out.println("Enter username/email: ");
+							String username=sc.nextLine();
+							
+							System.out.println("Enter password : ");
+							String password = sc.nextLine();
+							
+							try {
+								adminProfile = admin.loginAdministrator(username, password);
+								System.out.print("\n Welcome Administrator "+adminProfile.getaFirstName());
+								if(adminProfile.getaLastName()!=null) {
+									System.out.println(" "+adminProfile.getaLastName());
+								}
+								else {
+									
+									System.out.println();
+								}
+								break;
+							} catch (AdministratorException e) {
+								System.out.println(e.getMessage());
+								System.out.println("Do you want exit: press 4, else press any key...");
+								String ex= sc.nextLine();
+								if(ex.equals("4")) {
+									System.out.println("Thanking you for visiting...");
+									return;
+								}
 							}
-							else {
+						}
+						adminDashboard();
+					}
+				break;
+			case 2:
+					{
+						System.out.println(JavaConsoleColor.BOLDON+JavaConsoleColor.BLUE+"Hey Seller.."+JavaConsoleColor.BOLDOFF+JavaConsoleColor.RESET+"\n");
+						System.out.println("1. New user? register..");
+						System.out.println("2. Login..");
+						System.out.println("3. Exit");
+						
+						int number= sc.nextInt();
+						sc.nextLine();
+						switch(number) {
+							case 1:{
+								Seller sellerRegistration= new Seller();
+								System.out.println("\n Enter your First Name: ");
+								sellerRegistration.setsFirstName(sc.nextLine());
 								
-								System.out.println();
+								System.out.println("\n Enter your Last Name: ");
+								sellerRegistration.setsLastName(sc.nextLine());
+								
+								System.out.println("\n Enter your email id: ");
+								sellerRegistration.setsEmail(sc.nextLine());
+								
+								System.out.println("\n Enter your password: ");
+								sellerRegistration.setSpassword(sc.nextLine());
+								
+								System.out.println("\n Enter your mobile number: ");
+								sellerRegistration.setSmobile(sc.nextLine());
+								
+								System.out.println("\n Enter your Date of dirth (in yyyy-mm-dd formate): ");
+								sellerRegistration.setSdod(Date.valueOf(sc.nextLine()));
+								
+								try {
+									String str= seller.registerSeller(sellerRegistration);
+									System.out.println(str+"\n");
+									loginSeller();
+								} catch (SellerException e) {
+									// TODO Auto-generated catch block
+									System.out.println(e.getMessage());
+								}
 							}
 							break;
-						} catch (AdministratorException e) {
-							System.out.println(e.getMessage());
-							System.out.println("Do you want exit: press 4, else press any key...");
-							String ex= sc.nextLine();
-							if(ex.equals("4")) {
+							case 2:{
+								loginSeller();
+							}
+							break;
+							case 3:{
 								System.out.println("Thanking you for visiting...");
 								return;
 							}
-						}
-					}
-					adminDashboard();
-				}
-			break;
-		case 2:
-				{
-					System.out.println(JavaConsoleColor.BOLDON+JavaConsoleColor.BLUE+"Hey Seller.."+JavaConsoleColor.BOLDOFF+JavaConsoleColor.RESET+"\n");
-					System.out.println("1. New user? register..");
-					System.out.println("2. Login..");
-					System.out.println("3. Exit");
-					
-					int number= sc.nextInt();
-					sc.nextLine();
-					switch(number) {
-						case 1:{
-							Seller sellerRegistration= new Seller();
-							System.out.println("\n Enter your First Name: ");
-							sellerRegistration.setsFirstName(sc.nextLine());
-							
-							System.out.println("\n Enter your Last Name: ");
-							sellerRegistration.setsLastName(sc.nextLine());
-							
-							System.out.println("\n Enter your email id: ");
-							sellerRegistration.setsEmail(sc.nextLine());
-							
-							System.out.println("\n Enter your password: ");
-							sellerRegistration.setSpassword(sc.nextLine());
-							
-							System.out.println("\n Enter your mobile number: ");
-							sellerRegistration.setSmobile(sc.nextLine());
-							
-							System.out.println("\n Enter your Date of dirth (in yyyy-mm-dd formate): ");
-							sellerRegistration.setSdod(Date.valueOf(sc.nextLine()));
-							
-							try {
-								String str= seller.registerSeller(sellerRegistration);
-								System.out.println(str+"\n");
-								loginSeller();
-							} catch (SellerException e) {
-								// TODO Auto-generated catch block
-								System.out.println(e.getMessage());
+							default: {
+								System.out.println("Invalid number, Thanking you! visiting again...");							
+								break;
 							}
 						}
-						break;
-						case 2:{
-							loginSeller();
-						}
-						break;
-						case 3:{
-							System.out.println("Thanking you for visiting...");
-							return;
-						}
-						default: {
-							System.out.println("Invalid number, Thanking you! visiting again...");							
-							break;
-						}
 					}
-				}
-				break;
-				
-			case 3:
-				{
+					break;
 					
-				}
-				break;
-				
-			case 4:
-				{
-					System.out.println("Thanking you for visiting...");
-					return;
-				}
-				
-			default:
-				System.out.println("Invalid number, try again ...");
-				main(args);
-				break;
+				case 3:
+					{
+						
+					}
+					break;
+					
+				case 4:
+					{
+						System.out.println("Thanking you for visiting...");
+						return;
+					}
+					
+				default:
+					System.out.println("Invalid number, try again ...");
+					main(args);
+					break;
 //				i++;
 //				if(i<5) {
-				
-				
+					
+					
 //				}
 //				else {
 //					System.out.println("Thanking you for visiting bye bye...");
 //				}
-				
+					
+			}
 		}
 	}
 	public static void loginSeller() {
@@ -205,7 +206,7 @@ public class Main {
 						sellerProfile = seller.loginBySeller(username, password);
 						System.out.print("\n Welcome Seller "+sellerProfile.getsFirstName());
 						if(sellerProfile.getsLastName()!=null) {
-							System.out.println(" "+adminProfile.getaLastName());
+							System.out.println(" "+sellerProfile.getsLastName());
 						}
 						else {
 							
@@ -287,7 +288,7 @@ public class Main {
 	}
 	public static void sellerDashboard() {
 		try (Scanner sc = new Scanner(System.in)) {
-			System.out.println("\n"+ JavaConsoleColor.BOLDON+ JavaConsoleColor.GREEN_BACKGROUND+"Hey, Seller! Welcome Login penal..."+JavaConsoleColor.RESET+JavaConsoleColor.BOLDOFF)
+			System.out.println("\n"+ JavaConsoleColor.BOLDON+ JavaConsoleColor.GREEN_BACKGROUND+"Hey, Seller! Welcome Login penal..."+JavaConsoleColor.RESET+JavaConsoleColor.BOLDOFF);
 			System.out.println("1. Create list of item to sell.");
 			System.out.println("2. Update item price, quantity...");
 			System.out.println("3. Add new item in the list.");
@@ -302,7 +303,7 @@ public class Main {
 					List<Selling_Item> items = new ArrayList<>();
 					while(true) {
 						Selling_Item item= new Selling_Item();
-						int category;
+						int category=0;
 						while(true) {
 							System.out.println("Enter number for category as following:-");
 							System.out.println("1. Property");
@@ -339,7 +340,7 @@ public class Main {
 									flag= false;
 									break;
 								}
-								break;
+
 	
 							}
 							if(flag) {
@@ -363,8 +364,9 @@ public class Main {
 						System.out.println("Enter auction address: ");
 						item.setAuctionAddress(sc.nextLine());
 						
-						System.out.println("Enter auction date in yyyy-mm-dd format: ");
-						item.setAuctionDate(Date.valueOf(sc.nextLine()));
+						System.out.println("Enter the number of days from today, when auction occur: ");
+						item.setDays(sc.nextInt());
+						sc.nextInt();
 						
 						items.add(item);
 						
@@ -374,17 +376,125 @@ public class Main {
 							break;
 						}
 					}
-				/*	
+					try {
+						String result= seller.addListOfItems(items);
+						
+						System.out.println(JavaConsoleColor.YELLOW_BACKGROUND+result+JavaConsoleColor.RESET);
+						System.out.println("========================");
+					}
+					catch(ItemException e) {
+						System.out.println(JavaConsoleColor.RED+e.getMessage()+JavaConsoleColor.RESET);
+						System.out.println("========================");
+					}
 					
-					;fdk;vdk;gjdjf'jgdfjg'dj'pgj'dpj'p
+					System.out.println("\n 1. Profile Setting..");
+					System.out.println("2. Back");
+					System.out.println("3. LogOut And Exit");
+					int num2 = sc.nextInt();
+					sc.nextLine();
+					switch(num2) {
+						case 1 : {
+							sellerProfileSetting();
+							break;
+						}
+						case 2 : {
+							sellerDashboard();
+							break;
+						}
+						case 3 : {
+							System.out.println("Thanking you for visiting...");
+							return;
+							
+						}
+						default : {
+							System.out.println("Invalid number, try again ...");
+							sellerDashboard();
+							break;
+						}
+					}
 					
-					
-					*/
 					
 				}
 				break;
 				case 2:{
-					
+					System.out.println("\n"+JavaConsoleColor.GREEN+ "choose following option for updating item....\n"+JavaConsoleColor.RESET);
+					System.out.println("1. Change quantity..");
+					System.out.println("2. Change price..");
+					System.out.println("3. Change quantity & price both..");
+					System.out.println("4. Profile Setting..");
+					System.out.println("5. Back..");
+					System.out.println("6. Logout & Exit..");
+					int number7= sc.nextInt();
+					sc.nextLine();
+					switch(number7) {
+						case 1:{
+							System.out.println("Enter Item name: ");
+							String name= sc.nextLine();
+							System.out.println("Enter quantity no.: ");
+							int quantity = sc.nextInt();
+							sc.nextLine();
+							try {
+								String result= seller.updateItemQuantity(sellerProfile.getSid(), name, quantity);
+								System.out.println(JavaConsoleColor.YELLOW_BACKGROUND+result+JavaConsoleColor.RESET);
+								System.out.println("============================");
+							}
+							catch(ItemException e) {
+								System.out.println(JavaConsoleColor.RED+e.getMessage()+JavaConsoleColor.RESET);
+								System.out.println("============================");'
+							}
+							System.out.println("\n 1. Profile Setting..");
+							System.out.println("2. Back");
+							System.out.println("3. LogOut And Exit");
+							int num2 = sc.nextInt();
+							sc.nextLine();
+							switch(num2) {
+								case 1 : {
+									sellerProfileSetting();
+									break;
+								}
+								case 2 : {
+									sellerDashboard();
+									break;
+								}
+								case 3 : {
+									System.out.println("Thanking you for visiting...");
+									return;
+									
+								}
+								default : {
+									System.out.println("Invalid number, try again ...");
+									sellerDashboard();
+									break;
+								}
+							}
+							
+						}
+						break;
+						case 2:{
+							
+						}
+						break;
+						case 3:{
+							
+						}
+						break;
+						case 4:{
+							
+						}
+						break;
+						case 5:{
+							
+						}
+						break;
+						case 6:{
+							
+						}
+						break;
+						default:{
+							
+						}
+						break;
+					}
 				}
 				break;
 				case 3:{
@@ -414,7 +524,56 @@ public class Main {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+	public static void sellerProfileSetting(){
+		System.out.println(JavaConsoleColor.BOLDON+" Seller ID is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+sellerProfile.getSid()+JavaConsoleColor.RESET);
+		System.out.println(JavaConsoleColor.BOLDON+" Seller first Name is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+sellerProfile.getsFirstName()+JavaConsoleColor.RESET);
+		System.out.println(JavaConsoleColor.BOLDON+" Seller last Name is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+sellerProfile.getsLastName()+JavaConsoleColor.RESET);
+		System.out.println(JavaConsoleColor.BOLDON+" Seller email is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+sellerProfile.getsEmail()+JavaConsoleColor.RESET);
+		System.out.println(JavaConsoleColor.BOLDON+" Seller mobile number is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+sellerProfile.getSmobile()+JavaConsoleColor.RESET);
+		System.out.println(JavaConsoleColor.BOLDON+" Seller date of birth is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+sellerProfile.getSdod()+JavaConsoleColor.RESET);
+		System.out.println("===========================");
+				
+		System.out.println("\n 1. Change Password..");
+		System.out.println("2. Go to dashboard..");
+		System.out.println("3. LogOut And Exit");
+		try (Scanner sc = new Scanner(System.in)) {
+			int number5 = sc.nextInt();
+			
+			sc.nextLine();
+			switch(number5) {
+				case 1 : {
+					System.out.println("Enter your new password...");
+					String password= sc.nextLine();
+					try {
+						String msg = seller.ChangePasswordBySeller(sellerProfile.getsEmail(), password);
+						System.out.println(msg);
+						System.out.println("===========================");
+						
+					} catch (SellerException e) {
+						System.out.println(e.getMessage());
+						System.out.println("===========================");
+					}
+					sellerProfileSetting();
+				}
+				break;
+				case 2 : {
+					sellerDashboard();
+				}
+				break;
+				case 3 : {
+					System.out.println("Successfully logout ...");
+					System.out.println("Thanking you for visiting...");
+					return;
+					
+				}
+				default : {
+					System.out.println("Invalid number, try again ...");
+					sellerProfileSetting();
+				}
+				break;
+			}
+		}
+	}
 	
 	public static void adminDashboard() {
 		try (Scanner sc = new Scanner(System.in)) {
@@ -520,6 +679,7 @@ public class Main {
 				}
 				break;
 				case 3 : {
+					System.out.println("\n"+"Choose appropriate dispute report.."+"\n");
 					System.out.println("\n 1. Dispute list Seller to Application ..");
 					System.out.println("2. Dispute list Buyer to Seller ..");
 					System.out.println("3. Back");
@@ -537,7 +697,7 @@ public class Main {
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute description is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getDistputDetail()+JavaConsoleColor.RESET);
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute registration date is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getdDate()+JavaConsoleColor.RESET);
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute solution except date is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getSolutionDate()+JavaConsoleColor.RESET);
-									System.out.println(JavaConsoleColor.BOLDON+" Dispute status is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.isIsSolve()+JavaConsoleColor.RESET);
+									System.out.println(JavaConsoleColor.BOLDON+" Dispute status is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+"in process"+JavaConsoleColor.RESET);
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute Assign to solve is by : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getDTname()+JavaConsoleColor.RESET);
 									System.out.println("===========================");
 								});
@@ -595,7 +755,7 @@ public class Main {
 									
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute solution except date is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getSolutionDate()+JavaConsoleColor.RESET);
 									
-									System.out.println(JavaConsoleColor.BOLDON+" Dispute status is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.isIsSolve()+JavaConsoleColor.RESET);
+									System.out.println(JavaConsoleColor.BOLDON+" Dispute status is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+"in process"+JavaConsoleColor.RESET);
 									
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute Assign to solve is by : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getDTname()+JavaConsoleColor.RESET);
 									
@@ -714,7 +874,7 @@ public class Main {
 				}
 				break;
 				case 5 : {
-					
+					System.out.println("\n"+"Choose appropriate solved dispute report.."+"\n");
 					System.out.println("\n 1. Solve Dispute list Seller to Application ..");
 					System.out.println("2. Solve Dispute list Buyer to Seller ..");
 					System.out.println("3. Back");
@@ -734,7 +894,7 @@ public class Main {
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute description is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getDistputDetail()+JavaConsoleColor.RESET);
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute registration date is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getdDate()+JavaConsoleColor.RESET);
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute solution date is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getSolutionDate()+JavaConsoleColor.RESET);
-									System.out.println(JavaConsoleColor.BOLDON+" Dispute status is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.isIsSolve()+JavaConsoleColor.RESET);
+									System.out.println(JavaConsoleColor.BOLDON+" Dispute status is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+"Solved"+JavaConsoleColor.RESET);
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute Assign to solve is by : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getDTname()+JavaConsoleColor.RESET);
 									System.out.println("===========================");
 								});
@@ -771,7 +931,7 @@ public class Main {
 						break;
 						case 2 : {
 							try {
-								List<DisputeBuyerToSellerWithTeamAndCategoryNameDTO> list8 = admin.disputeListBuyerToSeller();
+								List<DisputeBuyerToSellerWithTeamAndCategoryNameDTO> list8 = admin.solvedDisputeListBuyerToSeller();
 								
 								
 								
@@ -792,7 +952,7 @@ public class Main {
 									
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute solution date is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getSolutionDate()+JavaConsoleColor.RESET);
 									
-									System.out.println(JavaConsoleColor.BOLDON+" Dispute status is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.isIsSolve()+JavaConsoleColor.RESET);
+									System.out.println(JavaConsoleColor.BOLDON+" Dispute status is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+"Solved"+JavaConsoleColor.RESET);
 									
 									System.out.println(JavaConsoleColor.BOLDON+" Dispute Assign to solve is by : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getDTname()+JavaConsoleColor.RESET);
 									
@@ -864,6 +1024,7 @@ public class Main {
 		}
 	}
 	public static void adminProfileSetting() {
+
 		
 		System.out.println(JavaConsoleColor.BOLDON+" Admin ID is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+adminProfile.getAid()+JavaConsoleColor.RESET);
 		System.out.println(JavaConsoleColor.BOLDON+" Admin first Name is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+adminProfile.getaFirstName()+JavaConsoleColor.RESET);
@@ -908,6 +1069,7 @@ public class Main {
 				}
 				default : {
 					System.out.println("Invalid number, try again ...");
+					adminProfileSetting();
 				}
 				break;
 			}

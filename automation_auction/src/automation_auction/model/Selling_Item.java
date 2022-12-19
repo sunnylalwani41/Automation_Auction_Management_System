@@ -13,6 +13,13 @@ public class Selling_Item {
 	private String auctionAddress;
 	private Date auctionDate;
 	private int noOfBuyerAuction;
+	private int days;
+	public int getDays() {
+		return days;
+	}
+	public void setDays(int days) {
+		this.days = days;
+	}
 	public Selling_Item() {
 		super();
 	}
@@ -81,7 +88,7 @@ public class Selling_Item {
 		return "Selling_Item [autionID=" + autionID + ", sid=" + sid + ", cid=" + cid + ", ItemDate=" + ItemDate
 				+ ", sellingPrice=" + sellingPrice + ", item_detail=" + item_detail + ", item_quantity=" + item_quantity
 				+ ", auctionAddress=" + auctionAddress + ", auctionDate=" + auctionDate + ", noOfBuyerAuction="
-				+ noOfBuyerAuction + "]";
+				+ noOfBuyerAuction + ", days=" + days + "]";
 	}
 	
 	

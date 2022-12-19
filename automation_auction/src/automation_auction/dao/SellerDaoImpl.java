@@ -154,26 +154,122 @@ public class SellerDaoImpl implements SellerDao{
 
 	@Override
 	public String addListOfItems(List<Selling_Item> list) throws ItemException {
-		// TODO Auto-generated method stub
-		return null;
+		String msg= "items are duplicate, so not inserted";
+		
+		try (Connection conn = DBUtil.provideConnection()) {
+			int x= 0;
+			PreparedStatement ps = conn.prepareStatement("insert into selling_item (sid, cid, itemdate, sellingprice, item_detail, item_quantity, auctionaddress, auctiondate, noOfBuyerAuction) values(?, ?, sysdate(), ?, ?, ?, ?, adddate(sysdate(), INTERVAL ? DAY), 0)");
+
+			for(Selling_Item l : list) {
+				ps.setInt(1, l.getSid());
+				ps.setInt(2, l.getCid());
+				ps.setInt(3, l.getSellingPrice());
+				ps.setString(4, l.getItem_detail());
+				ps.setInt(5, l.getItem_quantity());
+				ps.setString(6, l.getAuctionAddress());
+				ps.setInt(7, l.getDays());
+				x=x+ps.executeUpdate();
+				
+			}
+			
+			if(x > 0) {
+				msg= x+ " records successfully inserted...";
+			}
+			else {
+				throw new ItemException(msg);
+			}
+		} catch (SQLException e) {
+			throw new ItemException(e.getMessage());
+		}
+		
+		return msg;
+	}
+
+	
+
+	@Override
+	public String updateItemPrice(int sid, String itemName, int updatePrice) throws ItemException {
+		String message = "Item is not present in the list!!!";
+		
+		try (Connection conn = DBUtil.provideConnection()) {
+			PreparedStatement ps= conn.prepareStatement("update selling_item set sellingPrice = ? where sid  = ? and item_detail= ?");
+			
+			ps.setInt(1, updatePrice);
+			ps.setInt(2, sid);
+			ps.setString(3, itemName);
+			
+			int x = ps.executeUpdate();
+			
+			if(x > 0) {
+				message = x+ " records successfully update its quantity...";
+			}
+			else {
+				throw new ItemException(message);
+			}
+			
+		} catch (SQLException e) {
+			throw new ItemException(e.getMessage());
+		}
+		
+		
+		return message;
 	}
 
 	@Override
-	public String updateItemPrice(int auctionId, int updatePrice) throws ItemException {
-		// TODO Auto-generated method stub
-		return null;
+	public String updateItemQuantity(int sid, String itemName,  int itemQuantity) throws ItemException {
+		String message = "Item is not present in the list!!!";
+		
+		try (Connection conn = DBUtil.provideConnection()) {
+			PreparedStatement ps= conn.prepareStatement("update selling_item set item_quantity = ? where sid  = ? and item_detail= ?");
+			
+			ps.setInt(1, itemQuantity);
+			ps.setInt(2, sid);
+			ps.setString(3, itemName);
+			
+			int x = ps.executeUpdate();
+			
+			if(x > 0) {
+				message = x+ " records successfully update its quantity...";
+			}
+			else {
+				throw new ItemException(message);
+			}
+			
+		} catch (SQLException e) {
+			throw new ItemException(e.getMessage());
+		}
+		
+		
+		return message;
 	}
 
 	@Override
-	public String updateItemQuantity(int auctionId, int itemQuantity) throws ItemException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String updateItemPriceAndQuantity(int auctionId, int updatePrice, int itemQuantity) throws ItemException {
-		// TODO Auto-generated method stub
-		return null;
+	public String updateItemPriceAndQuantity(int sid, String itemName, int updatePrice, int itemQuantity) throws ItemException {
+		String message = "Item is not present in the list!!!";
+		
+		try (Connection conn = DBUtil.provideConnection()) {
+			PreparedStatement ps= conn.prepareStatement("update selling_item set item_quantity = ?, sellingPrice = ? where sid  = ? and item_detail= ?");
+			
+			ps.setInt(1, itemQuantity);
+			ps.setInt(2, updatePrice);
+			ps.setInt(3, sid);
+			ps.setString(4, itemName);
+			
+			int x = ps.executeUpdate();
+			
+			if(x > 0) {
+				message = x+ " records successfully update its quantity...";
+			}
+			else {
+				throw new ItemException(message);
+			}
+			
+		} catch (SQLException e) {
+			throw new ItemException(e.getMessage());
+		}
+		
+		
+		return message;
 	}
 
 	@Override
@@ -196,7 +292,7 @@ public class SellerDaoImpl implements SellerDao{
 
 	@Override
 	public String ChangePasswordBySeller(String username, String password) throws SellerException {
-String message = "Password can not change ...";
+		String message = "Password can not change ...";
 		
 		try (Connection conn = DBUtil.provideConnection()) {
 			
