@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import automation_auction.Exception.AdministratorException;
@@ -310,14 +311,14 @@ public class SellerDaoImpl implements SellerDao{
 		
 		try (Connection conn = DBUtil.provideConnection()) {
 			
-			PreparedStatement ps = conn.prepareStatement("");
+			PreparedStatement ps = conn.prepareStatement("delete from selling_item where sid=? AND item_detail = ?");
 			
-			ps.setInt(sid, sid);
-			
+			ps.setInt(1, sid);
+			ps.setString(2, itemName);
 			
 			int x = ps.executeUpdate();
 			if(x > 0) {
-				
+				message = "Item successfully remove..";
 			}
 			else {
 				throw new ItemException(message);
@@ -332,9 +333,41 @@ public class SellerDaoImpl implements SellerDao{
 	}
 
 	@Override
-	public List<Sold> soldItemList() throws ItemException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Sold> soldItemList(int sid) throws ItemException {
+		List<Sold> soldItems =  new ArrayList<>();
+		
+		try(Connection conn = DBUtil.provideConnection()){
+			PreparedStatement ps = conn.prepareStatement("select * from sold where sid = ? order by auctionDate desc");
+			ps.setInt(1, sid);
+			
+			ResultSet rs = ps.executeQuery();
+			boolean flag= true;
+			while(rs.next()) {
+				flag= false;
+				Sold sold = new Sold();
+				sold.setAuctionid(rs.getInt("auctionId"));
+				sold.setSid(rs.getInt("sid"));
+				sold.setBid(rs.getInt("bid"));
+				sold.setCid(rs.getInt("cid"));
+				sold.setItem_detail(rs.getString("item_detail"));
+				sold.setItem_quantity(rs.getInt("item_quantity"));
+				sold.setItemDate(rs.getDate("ItemDate"));
+				sold.setSellingPrice(rs.getInt("sellingPrice"));
+				sold.setAuctionPrice(rs.getInt("auctionPrice"));
+				sold.setAuctionAddress(rs.getString("auctionAddress"));
+				sold.setAuctionDate(rs.getDate("auctionDate"));
+				
+				soldItems.add(sold);
+			}
+			if(flag) {
+				throw new ItemException("No any item sold");
+			}
+			
+		}
+		catch(SQLException e) {
+			throw new ItemException(e.getMessage());
+		}
+		return soldItems;
 	}
 
 	@Override
@@ -364,6 +397,47 @@ public class SellerDaoImpl implements SellerDao{
 		
 		
 		return message;
+	}
+
+	@Override
+	public List<Selling_Item> sellingItemList(int sid) throws ItemException {
+		List<Selling_Item> sellingItems = new ArrayList<>();
+		
+		try (Connection conn = DBUtil.provideConnection()){
+			PreparedStatement ps = conn.prepareStatement("select * from selling_item where sid = ? order by ItemDate desc");
+			
+			ps.setInt(1, sid);
+			
+			ResultSet rs= ps.executeQuery();
+			boolean flag= true;
+			while(rs.next()) {
+				flag= false;
+				
+				Selling_Item sellingItem = new Selling_Item();
+				sellingItem.setAutionID(rs.getInt("auctionID"));
+				sellingItem.setSid(rs.getInt("sid"));
+				sellingItem.setCid(rs.getInt("cid"));
+				sellingItem.setItemDate(rs.getDate("ItemDate"));
+				sellingItem.setSellingPrice(rs.getInt("sellingPrice"));
+				sellingItem.setItem_detail(rs.getString("item_detail"));
+				sellingItem.setItem_quantity(rs.getInt("item_quantity"));
+				sellingItem.setAuctionAddress(rs.getString("auctionAddress"));
+				sellingItem.setAuctionDate(rs.getDate("auctionDate"));
+				sellingItem.setNoOfBuyerAuction(rs.getInt("noOfBuyerAuction"));
+				sellingItems.add(sellingItem);
+			}
+			if(flag) {
+				throw new ItemException("No items available for selling...");
+			}
+			
+		} catch (SQLException e) {
+			throw new ItemException(e.getMessage());
+		}
+		
+		
+		
+		
+		return sellingItems;
 	}
 
 }

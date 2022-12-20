@@ -254,11 +254,12 @@ insert in Buyer
 
 > insert into selling_item (sid, cid, itemdate, sellingprice, item_detail, item_quantity, auctionaddress, auctiondate, noOfBuyerAuction) values(1, 1, sysdate(), 15000000, 'shop', 1, 'Delhi', adddate(sysdate(), INTERVAL 10 DAY), 0);
 
-update selling_item set item_quantity = 5 where sid  = 1 and item_detail= 'shop';
+> update selling_item set item_quantity = 5 where sid  = 1 and item_detail= 'shop';
 
-update selling_item set sellingPrice = 156825 where sid  = 1 and item_detail= 'shop';
+> update selling_item set sellingPrice = 156825 where sid  = 1 and item_detail= 'shop';
 
-update selling_item set item_quantity = 1, sellingPrice = 10 where sid  = 1 and item_detail= 'shop';
+> update selling_item set item_quantity = 1, sellingPrice = 10 where sid  = 1 and item_detail= 'shop';
 
+> delete from selling_item where sid=1 AND item_detail = 'shop';
 
-85fe68b
+> select * from selling_item where sid = 1 order by ItemDate desc;

@@ -33,6 +33,8 @@ public interface SellerDao {
 	
 	public String removeItemFromTheList(int sid, String itemName) throws ItemException;
 	
-	public List<Sold> soldItemList() throws ItemException;
+	public List<Sold> soldItemList(int sid) throws ItemException;
+	
+	public List<Selling_Item> sellingItemList(int sid) throws ItemException;
 	
 }

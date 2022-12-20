@@ -293,8 +293,10 @@ public class Main {
 			System.out.println("2. Update item price, quantity...");
 			System.out.println("3. Add new item in the list.");
 			System.out.println("4. Remove item from the list.");
-			System.out.println("5. Profile Setting..");
-			System.out.println("6. LogOut And Exit");
+			System.out.println("5. View Sold item report.");
+			System.out.println("6. View selling item list.");
+			System.out.println("7. Profile Setting..");
+			System.out.println("8. LogOut And Exit");
 			
 			int number3 = sc.nextInt();
 			sc.nextLine();
@@ -692,17 +694,179 @@ public class Main {
 				}
 				break;
 				case 4:{
+					System.out.println("Enter item Name: ");
+					String itemName3= sc.nextLine();
+					try {
+						String result4= seller.removeItemFromTheList(sellerProfile.getSid(), itemName3);
+						System.out.println(JavaConsoleColor.YELLOW_BACKGROUND+result4+JavaConsoleColor.RESET);
+						System.out.println("========================");
+					}
+					catch(ItemException e) {
+						System.out.println(JavaConsoleColor.RED+e.getMessage()+JavaConsoleColor.RESET);
+						System.out.println("========================");
+					}
+					System.out.println("\n 1. Profile Setting..");
+					System.out.println("2. Back");
+					System.out.println("3. LogOut And Exit");
+					int number13 = sc.nextInt();
+					sc.nextLine();
+					switch(number13) {
+						case 1 : {
+							sellerProfileSetting();
+							break;
+						}
+						case 2 : {
+							sellerDashboard();
+							break;
+						}
+						case 3 : {
+							System.out.println("Thanking you for visiting...");
+							return;
+							
+						}
+						default : {
+							System.out.println("Invalid number, try again ...");
+							sellerDashboard();
+							break;
+						}
+					}
 					
 				}
 				break;
 				case 5:{
+					System.out.println("\n"+JavaConsoleColor.PURPLE+"View Sold item report..."+JavaConsoleColor.RESET+"\n");
+					try {
+						List<Sold> soldItems= seller.soldItemList(sellerProfile.getSid());
+						soldItems.forEach(l -> {
+							System.out.println(JavaConsoleColor.BOLDON+" Auction ID is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getAuctionid()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Seller ID is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getSid()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Buyer ID is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getBid()+JavaConsoleColor.RESET);
+												
+							System.out.println(JavaConsoleColor.BOLDON+" Category ID is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getCid()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item Name is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getItem_detail()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item Quantity is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getItem_quantity()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item insert date by seller is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getItemDate()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item sold price is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getSellingPrice()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item Auction price is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getAuctionPrice()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item Auction address is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getAuctionAddress()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item sold date is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getAuctionDate()+JavaConsoleColor.RESET);
+							
+							System.out.println("===========================");
+						});
+					}
+					catch(ItemException e) {
+						System.out.println(e.getMessage());
+					}
+					
+					System.out.println("\n 1. Profile Setting..");
+					System.out.println("2. Back");
+					System.out.println("3. LogOut And Exit");
+					int number14 = sc.nextInt();
+					sc.nextLine();
+					switch(number14) {
+						case 1 : {
+							sellerProfileSetting();
+							break;
+						}
+						case 2 : {
+							sellerDashboard();
+							break;
+						}
+						case 3 : {
+							System.out.println("Thanking you for visiting...");
+							return;
+							
+						}
+						default : {
+							System.out.println("Invalid number, try again ...");
+							sellerDashboard();
+							break;
+						}
+					}
+					
+					
 					
 				}
 				break;
 				case 6:{
+					System.out.println("\n"+JavaConsoleColor.PURPLE+"View selling item Report..."+"\n"+JavaConsoleColor.RESET);
+					try {
+						List<Selling_Item> sellingItems = seller.sellingItemList(sellerProfile.getSid());
+						sellingItems.forEach(l -> {
+							System.out.println(JavaConsoleColor.BOLDON+" Auction ID is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getAutionID()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Seller ID is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getSid()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Category ID is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getCid()+JavaConsoleColor.RESET);
+												
+							System.out.println(JavaConsoleColor.BOLDON+" Item insert date is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getItemDate()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item selling price is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getSellingPrice()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item Name is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getItem_detail()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item quantity is "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getItem_quantity()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item auction address is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getAuctionAddress()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Item Auction date is : "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getAuctionDate()+JavaConsoleColor.RESET);
+							
+							System.out.println(JavaConsoleColor.BOLDON+" Number of buyer show interest in this item and impose on some price to buy it:- "+JavaConsoleColor.BOLDOFF+JavaConsoleColor.CYAN+l.getNoOfBuyerAuction()+JavaConsoleColor.RESET);
+							
+							System.out.println("===========================");
+						});
+						
+					}
+					catch(ItemException e) {
+						System.out.println(e.getMessage());
+						
+					}
 					
+					System.out.println("\n 1. Profile Setting..");
+					System.out.println("2. Back");
+					System.out.println("3. LogOut And Exit");
+					int number15 = sc.nextInt();
+					sc.nextLine();
+					switch(number15) {
+						case 1 : {
+							sellerProfileSetting();
+							break;
+						}
+						case 2 : {
+							sellerDashboard();
+							break;
+						}
+						case 3 : {
+							System.out.println("Thanking you for visiting...");
+							return;
+							
+						}
+						default : {
+							System.out.println("Invalid number, try again ...");
+							sellerDashboard();
+							break;
+						}
+					}
 				}
 				break;
+				case 7:{
+					sellerProfileSetting();
+				}
+				break;
+				case 8:{
+					System.out.println("Thanking you for visiting...");
+					return;
+				}
+				
 				default:{
 					System.out.println("Invalid entry, try again...");
 					sellerDashboard();
