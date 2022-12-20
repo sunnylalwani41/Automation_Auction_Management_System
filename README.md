@@ -2,8 +2,10 @@
   <h1> Auctomation Auction System </h1>
 </div>
 
-![Auction41](https://user-images.githubusercontent.com/103615858/208630237-990fb672-6d2e-4ff6-b998-b6989cf16739.gif)
+<div align=center>
 
+![Auction41](https://user-images.githubusercontent.com/103615858/208630237-990fb672-6d2e-4ff6-b998-b6989cf16739.gif)
+</div>
 
 This server is a individual project, This is tell about manage the auction detail with seller, buyer and administrator . This server is our project during the Masai curriculum  .
 
