@@ -7,7 +7,7 @@
 ![Auction41](https://user-images.githubusercontent.com/103615858/208630237-990fb672-6d2e-4ff6-b998-b6989cf16739.gif)
 </div>
 
-This server is a individual project, This is tell about manage the auction detail with seller, buyer and administrator . This server is our project during the Masai curriculum  .
+This backend server is a console base individual project. This server can able to manage the auction detail with seller, buyer and administrator related data and its items. This server is our project during the Masai curriculum. This project is completed within 5 days in unit-SB101.
 
 
 ## Features
@@ -51,8 +51,8 @@ This server is a individual project, This is tell about manage the auction detai
 
 ## Tools
 
-* STS
-* Mysql
+* Spring Tool Suite
+* Mysql (RDBMS)
 
 
 
