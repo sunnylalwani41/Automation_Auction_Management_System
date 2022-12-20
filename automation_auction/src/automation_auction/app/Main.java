@@ -157,7 +157,57 @@ public class Main {
 					
 				case 3:
 					{
+						System.out.println(JavaConsoleColor.BOLDON+JavaConsoleColor.BLUE+"Hey Buyer.."+JavaConsoleColor.BOLDOFF+JavaConsoleColor.RESET+"\n");
+						System.out.println("1. New user? register..");
+						System.out.println("2. Login..");
+						System.out.println("3. Exit");
 						
+						int option= sc.nextInt();
+						sc.nextLine();
+						switch(option) {
+							case 1:{
+								Buyer buyerRegistration= new Buyer();
+								System.out.println("\n Enter your First Name: ");
+								buyerRegistration.setbFirstName(sc.nextLine());
+								
+								System.out.println("\n Enter your Last Name: ");
+								buyerRegistration.setbLastName(sc.nextLine());
+								
+								System.out.println("\n Enter your email id: ");
+								buyerRegistration.setBemail(sc.nextLine());
+								
+								System.out.println("\n Enter your password: ");
+								buyerRegistration.setBpassword(sc.nextLine());
+								
+								System.out.println("\n Enter your mobile number: ");
+								buyerRegistration.setBmobile(sc.nextLine());
+								
+								System.out.println("\n Enter your Date of dirth (in yyyy-mm-dd formate): ");
+								buyerRegistration.setBdod(Date.valueOf(sc.nextLine()));
+								
+								try {
+									String mesg= buyer.registerBuyer(buyerRegistration);
+									
+									System.out.println(mesg+"\n");
+									loginBuyer();
+								} catch (BuyerException e) {
+									System.out.println(e.getMessage());
+								}
+							}
+							break;
+							case 2:{
+								loginBuyer();
+							}
+							break;
+							case 3:{
+								System.out.println("Thanking you for visiting...");
+								return;
+							}
+							default: {
+								System.out.println("Invalid number, Thanking you! visiting again...");							
+								break;
+							}
+						}
 					}
 					break;
 					
@@ -183,6 +233,125 @@ public class Main {
 			}
 		}
 	}
+	public static void loginBuyer(){
+		System.out.println(JavaConsoleColor.BOLDON+ JavaConsoleColor.GREEN_BACKGROUND+"Hey, Buyer! Welcome Login penal..."+JavaConsoleColor.RESET+JavaConsoleColor.BOLDOFF);
+		
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("\n 1. Enter your login detail..");
+			System.out.println("2. forget username..");
+			System.out.println("3. forget password..");
+			System.out.println("4. Exit");
+			int option2 = sc.nextInt();
+			sc.nextLine();
+			
+			switch(option2) {
+				case 1:{
+					System.out.println("\n Enter your emailid/username...");
+					String username= sc.nextLine();
+					
+					System.out.println("\n Enter your password...");
+					String password= sc.nextLine();
+					
+					try {
+						buyerProfile = buyer.loginBuyer(username, password);
+						System.out.print("\n Welcome Seller "+buyerProfile.getbFirstName());
+						if(buyerProfile.getbLastName() !=null) {
+							System.out.println(" "+buyerProfile.getbLastName());
+						}
+						else {
+							
+							System.out.println();
+						}
+						buyerDashboard();
+					} catch (BuyerException e) {
+						System.out.println(e.getMessage());
+						System.out.println("Do you want exit: press 4, else press any key...");
+						String numb= sc.nextLine();
+						if(numb.equals("4")) {
+							System.out.println("Thanking you for visiting...");
+							return;
+						}
+						else {
+							loginBuyer();
+						}
+					}
+				}
+				break;
+				case 2:{
+					System.out.println("\n Enter your new emailid/username");
+					String username= sc.nextLine();
+					
+					System.out.println("\n Enter your first name: ");
+					String firstname = sc.nextLine();
+					
+					System.out.println("\n Enter your Date of birth (in yyyymmdd format): ");
+					Date dob= Date.valueOf(sc.nextLine());
+					
+					System.out.println("\n Enter your mobile number: ");
+					String mobileNumber = sc.nextLine();
+					
+					try {
+						String message = buyer.resetUsernameByBuyer(firstname, username, dob, mobileNumber);
+						System.out.println(message);
+						loginBuyer();
+					} catch (BuyerException e) {
+						System.out.println(e.getMessage());
+						System.out.println(" Thanking you! visit again ...");
+						return;
+					}
+				}
+				break;
+				case 3:{
+
+					System.out.println("\n Enter your emailid/username");
+					String username= sc.nextLine();
+					
+					System.out.println("\n Enter new password");
+					String password = sc.nextLine();
+					
+					try {
+						String message = buyer.resetPasswordByBuyer(username, password);
+						System.out.println(message);
+						loginBuyer();
+					} catch (BuyerException e) {
+						System.out.println(e.getMessage());
+						System.out.println(" Thanking you! try again ...");
+						loginBuyer();
+						
+					}
+					
+				}
+				break;
+				case 4:{
+					System.out.println("Thanking you for visiting...");
+					return;
+				}
+				
+				default: {
+					System.out.println("Invalid number, Thanking you! visit again ...");
+					loginBuyer();
+				}
+				break;
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public static void buyerDashboard(){
+		/*
+		
+		
+		*/
+	}
+	public static void buyerProfileSetting() {
+		/*
+		
+		
+		*/
+	}
+	
+	
 	public static void loginSeller() {
 		System.out.println(JavaConsoleColor.BOLDON+ JavaConsoleColor.GREEN_BACKGROUND+"Hey, Seller! Welcome Login penal..."+JavaConsoleColor.RESET+JavaConsoleColor.BOLDOFF);
 		

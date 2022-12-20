@@ -1,5 +1,6 @@
 package automation_auction.dao;
 
+import java.sql.Date;
 import java.util.Map;
 
 import javax.xml.catalog.CatalogException;
@@ -16,9 +17,11 @@ public interface BuyerDao {
 	
 	public Buyer loginBuyer(String username, String password) throws BuyerException;
 	
-	public String resetPasswordByBuyer(String username, String dob) throws BuyerException;
+	public String changePasswordByBuyer(String username, String updatePassword) throws BuyerException;
 	
-	public String resetUsernameByBuyer(String bFirstName,String bLastName, String mobile, String dob) throws BuyerException;
+	public String resetPasswordByBuyer(String username, String password) throws BuyerException;
+	
+	public String resetUsernameByBuyer(String firstName, String username, Date dob, String mobile) throws BuyerException;
 	
 	public Map<Integer, Selling_Item> SearchItemByName (String itemName) throws ItemException;
 	
