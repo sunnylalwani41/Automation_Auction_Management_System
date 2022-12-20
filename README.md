@@ -1,5 +1,68 @@
-# elastic-sock-6304
+<div align=center>
+  <h1> Auctomation Auction System </h1>
+</div>
+
+![Auction41](https://user-images.githubusercontent.com/103615858/208630237-990fb672-6d2e-4ff6-b998-b6989cf16739.gif)
+
+
+This server is a individual project, This is tell about manage the auction detail with seller, buyer and administrator . This server is our project during the Masai curriculum  .
+
+
+## Features
+
+- Administrator roles:-
+  1. View buyer list
+  2. View seller list
+  3. View daily selling report
+  4. View dispute reports
+  
+ - Seller roles:-
+   1. Add items
+   2. Delete items
+   3. Update items
+   4. Selling report
+   5. Items report
+  
+- Buyer roles:-
+  1. Select Items to buy
+  2. See other buyer choices
+  3. buy item  
+
+
+## Installation
+
+- copy this https://github.com/sunnylalwani41/elastic-sock-6304.git
+- Select path where you want to store the project in your pc
+- open the corresponding file / folder with editor
+- open terminal of your editor
+- use  --> git clone (paste link) <-- 
+- after project cloned to your folder
+- go to "star wars.html" inside homenavbar folder
+- open with live server
+    
+## Tech Stack
+
+* Java
+* JDBC
+* SQL
+* DAO
+
+## Tools
+
+* STS
+* Mysql
+
 
 
 ## Entity Relationship Diagram
-<img src="https://miro.com/app/board/uXjVP5I-o44=/?share_link_id=469189813798">
+![Entity Relationship Diagram](https://user-images.githubusercontent.com/103615858/208626599-b36e7c82-5ed3-4414-b3c7-8adc6eaad3d0.jpg)
+
+## Flowchart
+![Flowchart](https://user-images.githubusercontent.com/103615858/208626781-1f58135c-2163-4bef-a0ae-66c16f59f6fc.jpeg)
+
+
+
+# Application Image
+
+
+
