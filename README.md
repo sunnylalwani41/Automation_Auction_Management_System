@@ -9,6 +9,8 @@
 
 This backend server is a console base individual project. This server can able to manage the auction detail with seller, buyer and administrator related data and its items. This server is our project during the Masai curriculum. This project is completed within 5 days in unit-SB101.
 
+## Entity Relationship Diagram
+![Entity Relationship Diagram](https://user-images.githubusercontent.com/103615858/208626599-b36e7c82-5ed3-4414-b3c7-8adc6eaad3d0.jpg)
 
 ## Features
 
@@ -55,9 +57,6 @@ This backend server is a console base individual project. This server can able t
 * Mysql (RDBMS)
 
 
-
-## Entity Relationship Diagram
-![Entity Relationship Diagram](https://user-images.githubusercontent.com/103615858/208626599-b36e7c82-5ed3-4414-b3c7-8adc6eaad3d0.jpg)
 
 ## Flowchart
 ![Flowchart](https://user-images.githubusercontent.com/103615858/208626781-1f58135c-2163-4bef-a0ae-66c16f59f6fc.jpeg)
