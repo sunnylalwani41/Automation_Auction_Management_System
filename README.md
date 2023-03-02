@@ -35,14 +35,14 @@ This backend server is a console base individual project. This server can able t
 
 ## Installation
 
-- copy this https://github.com/sunnylalwani41/elastic-sock-6304.git
+- copy this https://github.com/sunnylalwani41/Automation_Auction_Management_System.git
 - Select path where you want to store the project in your pc
 - open the corresponding file / folder with editor
 - open terminal of your editor
 - use  --> git clone (paste link) <-- 
 - after project cloned to your folder
-- go to "star wars.html" inside homenavbar folder
-- open with live server
+- go to "Main.java" inside "app" folder
+- run as java console
     
 ## Tech Stack
 
