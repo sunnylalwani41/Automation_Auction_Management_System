@@ -42,7 +42,7 @@ This backend server is a console base individual project. This server can able t
 - use  --> git clone (paste link) <-- 
 - after project cloned to your folder
 - go to "Main.java" inside "app" folder
-- run as java console
+- run as java application
     
 ## Tech Stack
 
